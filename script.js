@@ -1,4 +1,3 @@
-
 const menu = document.getElementById("menu");
 const cartBtn = document.getElementById("cart-btn");
 const cartModal = document.getElementById("cart-modal");
@@ -78,7 +77,9 @@ function updateCartModal() {
             <div class="">
                 <p class="font-medium">${item.name}</p>
                 <p>Quantidade (${item.quantity})</p>            
-                <p class="font-medium mt-2">R$ ${item.price.toFixed(2)}</p>            
+                <p class="font-medium mt-2">R$ ${item.price.toFixed(
+                  2
+                )}</p>            
             </div>
 
             <button class="remove-from-cart-btn" data-name="${item.name}">
@@ -135,22 +136,21 @@ addrressIpunt.addEventListener("input", function (event) {
 });
 //Finalizar pedido
 checkoutBtn.addEventListener("click", function () {
-  
-    const isOpen = checkoutRestaurantOpen();
-    if(!isOpen){
-        Toastify({
-            text: "Ops o restaurante está fechado!",
-            duration: 3000,
-            close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "right", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-            style: {
-                background: "#ef4444",
-            },
-        }).showToast();
+  const isOpen = checkoutRestaurantOpen();
+  if (!isOpen) {
+    Toastify({
+      text: "Ops o restaurante está fechado!",
+      duration: 3000,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        background: "#ef4444",
+      },
+    }).showToast();
     return;
-    }
+  }
 
   if (cart.length === 0) return;
   if (addrressIpunt.value === "") {
@@ -159,22 +159,23 @@ checkoutBtn.addEventListener("click", function () {
     return;
   }
   //Enviar pedido para api do whats
-  const cartItems = cart.map((item) => {
-      return (
-        `${item.name} Quantidade: (${item.quantity}) Preço: R$${item.price} |`
-      );
-    }).join("")
-  
+  const cartItems = cart
+    .map((item) => {
+      return `${item.name} Quantidade: (${item.quantity}) Preço: R$${item.price} |`;
+    })
+    .join("");
+
   const message = encodeURIComponent(cartItems);
   const phone = "85992871308";
-  
-  window.open(`https://wa.me/${phone}?text=${message} Endereço: ${addrressIpunt.value}`,"_blank");
-  
+
+  window.open(
+    `https://wa.me/${phone}?text=${message} Endereço: ${addrressIpunt.value}`,
+    "_blank"
+  );
+
   cart = [];
   updateCartModal();
 });
-
-
 
 //Varificar a hora e manipular o card do horario
 
@@ -195,3 +196,26 @@ if (isOpen) {
   spanItem.classList.remove("bg-green-600");
   spanItem.classList.add("bg-red-500");
 }
+
+// modal menu
+
+const menuBtn = document.getElementById("menuBtn");
+const menuModal = document.getElementById("menu-modal");
+const closeMenu = document.getElementById("close-menu");
+
+// Abrir menu
+menuBtn.addEventListener("click", () => {
+  menuModal.classList.remove("hidden");
+  menuModal.style.display = "flex";
+});
+
+// Fechar ao clicar fora
+menuModal.addEventListener("click", (event) => {
+  if (event.target === menuModal) {
+    menuModal.style.display = "none";
+  }
+});
+
+closeMenu.addEventListener("click", function () {
+  menuModal.style.display = "none";
+});

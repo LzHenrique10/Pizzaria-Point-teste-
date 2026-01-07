@@ -6,7 +6,11 @@
     <title>Pizzarai Point (teste)</title>
     <link rel="stylesheet" href="./styles/output.css" />
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,17 +28,32 @@
     />
 
     <!--META TAG OG-->
-    <meta property="og:type" content="website"/>
-    <meta property="og:title" content="Pizaria Point - A melhor Pizaria da REGIÃO"/>
-    <meta property="og:image" content="https://pizzaria-point-teste.vercel.app/assents/hamb-1.png"/>
-    <meta property="og:description" content="A melhor pizza de FORTALEZA feita com amor e carinho."/>
-    <meta property="og:site_name" content="PizariaPoint"/>
-
-
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Pizaria Point - A melhor Pizaria da REGIÃO"
+    />
+    <meta
+      property="og:image"
+      content="https://pizzaria-point-teste.vercel.app/assents/hamb-1.png"
+    />
+    <meta
+      property="og:description"
+      content="A melhor pizza de FORTALEZA feita com amor e carinho."
+    />
+    <meta property="og:site_name" content="PizariaPoint" />
   </head>
   <body>
     <!--HEADER-->
-    <header class="w-full h-[420px] bg-zinc-900 bg-home bg-cover bg-center">
+    <header
+      class="relative w-full h-[420px] bg-zinc-900 bg-home bg-cover bg-center"
+    >
+      <button
+        id="menuBtn"
+        style="position: absolute; top: 16px; left: 32px; z-index: 89"
+      >
+        <i class="fa-solid fa-bars" style="font-size: 32px; color: white"></i>
+      </button>
       <div class="w-full h-full flex flex-col justify-center items-center">
         <img
           src="./assents/hamb-1.png"
@@ -291,8 +310,53 @@
     </footer>
     <!-- FIM BUTTON CAR FOOTER-->
 
+    <!-- MODAL MENU -->
+    <div
+      id="menu-modal"
+      class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] hidden"
+    >
+      <aside class="bg-white h-full w-[300px] p-5 rounded-md shadow-lg">
+        <button id="close-menu" class="mb-6 p-2 rounded hover:bg-gray-100">
+          <i class="fa-solid fa-xmark text-2xl"></i>
+        </button>
+        <h2 class="text-2xl font-bold mb-4">Menu</h2>
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="./script.js"></script>
+        <nav class="flex flex-col text-lg">
+          <a
+            href="#"
+            class="flex items-center gap-2 py-2 border-b border-gray-200 hover:text-blue-600"
+          >
+            <i class="fa-solid fa-phone"></i> Contato
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2 py-2 border-b border-gray-200 hover:text-blue-600"
+          >
+            <i class="fa-solid fa-map-marker-alt"></i> Localização
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2 py-2 border-b border-gray-200 hover:text-blue-600"
+          >
+            <i class="fa-solid fa-users"></i> Sobre nós
+          </a>
+          <a
+            href="#"
+            id="admin-panel"
+            class="flex items-center gap-2 py-2 hover:text-blue-600"
+          >
+            <i class="fa-solid fa-tachometer-alt"></i> Painel de Controle
+          </a>
+        </nav>
+      </aside>
+    </div>
+
+    <!-- FIM MODAL MENU -->
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="./script.js" defer></script>
   </body>
 </html>
