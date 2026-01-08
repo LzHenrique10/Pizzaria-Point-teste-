@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./assents/logo_point_praça.ico"
+      type="image/x-icon"
+    />
     <title>Pizzarai Point (teste)</title>
     <link rel="stylesheet" href="./styles/output.css" />
 
@@ -44,6 +49,9 @@
     <meta property="og:site_name" content="PizariaPoint" />
   </head>
   <body>
+    <input id="emailInput" type="email" placeholder="Digite seu email" />
+    <button id="loginBtn">Entrar</button>
+
     <!--HEADER-->
     <header
       class="relative w-full h-[420px] bg-zinc-900 bg-home bg-cover bg-center"
@@ -313,7 +321,7 @@
     <!-- MODAL MENU -->
     <div
       id="menu-modal"
-      class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] hidden"
+      class="flex bg-black/60 w-full h-full fixed top-0 left-0 z-[99] hidden"
     >
       <aside class="bg-white h-full w-[300px] p-5 rounded-md shadow-lg">
         <button id="close-menu" class="mb-6 p-2 rounded hover:bg-gray-100">
@@ -342,10 +350,10 @@
           </a>
           <a
             href="#"
-            id="admin-panel"
-            class="flex items-center gap-2 py-2 hover:text-blue-600"
+            id="admin-painel-menu"
+            class="hidden text-center gap-2 py-2 hover:text-blue-600"
           >
-            <i class="fa-solid fa-tachometer-alt"></i> Painel de Controle
+            <i class="fa-solid fa-gear"></i> Painel de Controle
           </a>
         </nav>
       </aside>
@@ -357,6 +365,6 @@
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/toastify-js"
     ></script>
-    <script src="./script.js" defer></script>
+    <script src="./script.js" defer ></script>
   </body>
 </html>
