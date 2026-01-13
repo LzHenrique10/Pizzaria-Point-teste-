@@ -8,7 +8,7 @@
       href="./assents/logo_point_praça.ico"
       type="image/x-icon"
     />
-    <title>Pizzarai Point (teste)</title>
+    <title>Pizzaria Point (teste)</title>
     <link rel="stylesheet" href="./styles/output.css" />
 
     <link
@@ -86,28 +86,27 @@
       Conheça nosso Menu
     </h2>
 
- <!-- INICIO MENU -->
-<div id="menu">
-  <main
-    id="menu-hamburgers"
-    class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16"
-  >
-    <!-- hamburgers entram aqui via JS -->
-  </main>
+    <!-- INICIO MENU -->
+    <div id="menu">
+      <main
+        id="menu-hamburgers"
+        class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16"
+      >
+        <!-- hamburgers entram aqui via JS -->
+      </main>
 
-  <div class="mx-auto max-w-7xl px-2 my-2">
-    <h2 class="font-bold text-3xl">Bebidas</h2>
-  </div>
+      <div class="mx-auto max-w-7xl px-2 my-2">
+        <h2 class="font-bold text-3xl">Bebidas</h2>
+      </div>
 
-  <div
-    id="menu-bebidas"
-    class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16"
-  >
-    <!-- bebidas entram aqui via JS -->
-  </div>
-</div>
-<!-- FIM MENU -->
-
+      <div
+        id="menu-bebidas"
+        class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16"
+      >
+        <!-- bebidas entram aqui via JS -->
+      </div>
+    </div>
+    <!-- FIM MENU -->
 
     <!--MODAL CART-->
     <div
@@ -131,6 +130,15 @@
         <p class="text-red-400 hidden" id="address-warn">
           Digite seu endereço completo!
         </p>
+
+        <p class="font-bold mt-2">Forma de pagamento:</p>
+        <select id="pagamento" class="w-full border-2 p-1 rounded">
+          <option value="">Selecione</option>
+          <option value="Pix">Pix</option>
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="Cartão">Cartão</option>
+        </select>
+
         <div class="flex items-center justify-between mt-5 w-full">
           <button id="close-modal-btn">Fechar</button>
           <button
@@ -143,6 +151,39 @@
       </div>
     </div>
     <!--FIM MODAL CART-->
+
+    <!-- MODAL IDENTIFICAÇÃO CLIENTE -->
+    <div
+      id="cliente-modal"
+      class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center"
+    >
+      <div class="bg-white p-5 rounded-md w-[90%] max-w-md">
+        <h2 class="text-xl font-bold mb-3">Identificação</h2>
+
+        <input
+          id="cliente-nome"
+          placeholder="Seu nome"
+          class="w-full border p-2 mb-2"
+        />
+
+        <input
+          id="cliente-telefone"
+          placeholder="Telefone"
+          class="w-full border p-2 mb-4"
+        />
+
+        <button
+          id="continuar-sem-login"
+          class="bg-green-500 text-white w-full py-2 rounded mb-2"
+        >
+          Continuar sem login
+        </button>
+
+        <button id="ir-login" class="w-full text-blue-600 underline">
+          Entrar ou criar conta
+        </button>
+      </div>
+    </div>
 
     <!--BUTTON CAR FOOTER-->
     <footer

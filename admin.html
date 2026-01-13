@@ -1,21 +1,46 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <title>Painel Admin</title>
-</head>
 <body>
   <h1>Painel de Controle 🔧</h1>
-  <p>Bem-vindo, admin!</p>
-
   <button id="logoutBtn">Sair</button>
 
+  <h2>Pedidos recebidos</h2>
+  <div id="pedidos"></div>
+
   <script>
-    // proteger a página
     const token = localStorage.getItem("token");
     if (!token) {
       window.location.href = "/";
     }
+
+    fetch("http://localhost:3000/admin/pedidos", {
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    })
+    .then(res => res.json())
+    .then(pedidos => {
+      const container = document.getElementById("pedidos");
+
+      pedidos.reverse().forEach(p => {
+        const div = document.createElement("div");
+        div.style.border = "1px solid #000";
+        div.style.padding = "10px";
+        div.style.marginBottom = "10px";
+
+        div.innerHTML = `
+          <strong>Cliente:</strong> ${p.nome}<br>
+          <strong>Endereço:</strong> ${p.endereco}<br>
+          <strong>Pagamento:</strong> ${p.pagamento}<br>
+          <strong>Itens:</strong>
+          <ul>
+            ${p.itens.map(i => `<li>${i.nome} x${i.quantidade}</li>`).join("")}
+          </ul>
+          <strong>Total:</strong> R$ ${p.total.toFixed(2)}<br><br>
+          <button onclick="window.print()">Imprimir 🖨️</button>
+        `;
+
+        container.appendChild(div);
+      });
+    });
 
     document.getElementById("logoutBtn").onclick = () => {
       localStorage.removeItem("token");
@@ -23,4 +48,3 @@
     };
   </script>
 </body>
-</html>

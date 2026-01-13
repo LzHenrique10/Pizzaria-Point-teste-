@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1768314850969,
+    "nome": "João",
+    "telefone": "85999999999",
+    "endereco": "Rua A, 123",
+    "pagamento": "Pix",
+    "itens": [
+      {
+        "nome": "Hamburger Smash",
+        "quantidade": 2
+      },
+      {
+        "nome": "Coca Lata",
+        "quantidade": 1
+      }
+    ],
+    "total": 42.8,
+    "status": "novo",
+    "data": "13/01/2026, 11:34:10"
+  }
+]
