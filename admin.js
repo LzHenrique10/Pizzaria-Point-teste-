@@ -52,7 +52,7 @@ function carregarPedidos() {
     .catch(() => {
       localStorage.clear();
       alert("Sua sessão expirou ou você não tem permissão");
-      window.location.href = "login.html";
+      window.location.href = "./front/login.html";
     });
 }
 

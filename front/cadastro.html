@@ -1,8 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <title>Login</title>
+    <link
+      rel="shortcut icon"
+      href="../assents/logo_point_praça.ico"
+      type="image/x-icon"
+    />
+    <title>Cadastre-se e aproveite todo o cardápio</title>
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,8 +39,14 @@
           border-radius: 999px;
           transition: 0.5s;
         "
-        onmouseover="this.style.background='white'; this.style.color='black'"
-        onmouseout="this.style.background='transparent'; this.style.color='white'"
+        onmouseover="
+          this.style.background = 'white';
+          this.style.color = 'black';
+        "
+        onmouseout="
+          this.style.background = 'transparent';
+          this.style.color = 'white';
+        "
       >
         Home
       </a>
@@ -91,10 +102,7 @@
 
       <p class="text-center text-sm text-gray-600 mt-6">
         Já tem conta?
-        <a
-          href="login.html"
-          class="text-red-600 font-semibold hover:underline"
-        >
+        <a href="login.html" class="text-red-600 font-semibold hover:underline">
           Entrar
         </a>
       </p>

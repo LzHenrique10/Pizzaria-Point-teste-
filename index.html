@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -56,11 +56,11 @@
       <div
         style="
           position: absolute;
-          top: 24px;
+          top: 16px;
           right: 40px;
           display: flex;
           gap: 24px;
-          z-index: 999;
+          z-index: 15;
           color: white;
           font-size: 14px;
           font-weight: 500;
@@ -76,8 +76,14 @@
             border-radius: 999px;
             transition: 0.2s;
           "
-          onmouseover="this.style.background='white'; this.style.color='black'"
-          onmouseout="this.style.background='transparent'; this.style.color='white'"
+          onmouseover="
+            this.style.background = 'white';
+            this.style.color = 'black';
+          "
+          onmouseout="
+            this.style.background = 'transparent';
+            this.style.color = 'white';
+          "
         >
           Entrar
         </a>
@@ -92,8 +98,14 @@
             border-radius: 999px;
             transition: 0.2s;
           "
-          onmouseover="this.style.background='white'; this.style.color='black'"
-          onmouseout="this.style.background='transparent'; this.style.color='white'"
+          onmouseover="
+            this.style.background = 'white';
+            this.style.color = 'black';
+          "
+          onmouseout="
+            this.style.background = 'transparent';
+            this.style.color = 'white';
+          "
         >
           Criar conta
         </a>
@@ -128,9 +140,7 @@
       Conheça nosso Cardápio
     </h2>
 
-
-
-        <!--INICIO MENU-->
+    <!--INICIO MENU-->
     <div id="menu">
       <div class="mx-auto max-w-7xl px-2 my-2">
         <h2 class="font-bold text-2xl text-center">Pizzas</h2>
@@ -139,33 +149,33 @@
         class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16"
       >
         <!--PRODUTO ITEM-->
-          <div class="flex gap-2">
-            <img
-              src="./assents/hamb-1.png"
-              alt="Hamburger Smash"
-              class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
-            />
+        <div class="flex gap-2">
+          <img
+            src="./assents/hamb-1.png"
+            alt="Hamburger Smash"
+            class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+          />
 
-            <div>
-              <p class="font-bold">Hamburger Smash</p>
-              <p class="text-sm">
-                Lorem ipsum Beatae dolores empore dolore labore, ad ducimus
-                eligendi nesciunt libero officiis aliquid nam iure quo facere
-                magnam delectus voluptates.
-              </p>
+          <div>
+            <p class="font-bold">Hamburger Smash</p>
+            <p class="text-sm">
+              Lorem ipsum Beatae dolores empore dolore labore, ad ducimus
+              eligendi nesciunt libero officiis aliquid nam iure quo facere
+              magnam delectus voluptates.
+            </p>
 
-              <div class="flex items-center gap-2 justify-between mt-3">
-                <p class="font-bold text-lg">R$ 18,90</p>
-                <button
-                  class="bg-gray-900 px-5 rounded add-to-cart-btn"
-                  data-name="Hamburger Smash"
-                  data-price="18.90"
-                >
-                  <i class="fa fa-cart-plus text-lg text-white"></i>
-                </button>
-              </div>
+            <div class="flex items-center gap-2 justify-between mt-3">
+              <p class="font-bold text-lg">R$ 18,90</p>
+              <button
+                class="bg-gray-900 px-5 rounded add-to-cart-btn p"
+                data-name="Hamburger Smash"
+                data-price="18.90"
+              >
+                <i class="fa fa-cart-plus text-lg text-white"></i>
+              </button>
             </div>
           </div>
+        </div>
         <!--PRODUTO ITEM-->
 
         <!--PRODUTO ITEM-->

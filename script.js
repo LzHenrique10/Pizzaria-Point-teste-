@@ -18,9 +18,23 @@ const salvarClienteBtn = document.getElementById("continuar-sem-login");
 
 let cart = [];
 
+// ================== CLIENTE LOGADO (AUTO) ==================
+const userLogado = JSON.parse(localStorage.getItem("user"));
+
+if (userLogado) {
+  salvarCliente({
+    nome: userLogado.nome,
+    telefone: userLogado.telefone,
+  });
+}
+
+
 // ================== CLIENTE ==================
 function clienteLogado() {
-  return localStorage.getItem("cliente") !== null;
+  return (
+    localStorage.getItem("user") !== null ||
+    localStorage.getItem("cliente") !== null
+  );
 }
 
 function salvarCliente(dados) {
@@ -228,7 +242,7 @@ if (checkoutBtn) {
 // ================== HORÁRIO ==================
 function checkoutRestaurantOpen() {
   const h = new Date().getHours();
-  return h >= 16 && h < 22;
+  return h >= 11 && h < 22;
 }
 
 /*

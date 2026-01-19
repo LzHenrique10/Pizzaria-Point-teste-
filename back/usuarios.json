@@ -13,5 +13,13 @@
     "senha": "123456",
     "telefone": "85999999999",
     "role": "cliente"
+  },
+  {
+    "id": 1768832758441,
+    "nome": "Eduardo",
+    "telefone": "85996412344",
+    "email": "edu@gmail.com",
+    "senha": "$2b$10$j60e.fhdYqbbLdPMCEfSrej55XbrCSQrCG.E0zFrqRWBZ0xt/bMUe",
+    "role": "cliente"
   }
 ]

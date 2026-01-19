@@ -22,9 +22,9 @@ function login() {
       localStorage.setItem("user", JSON.stringify(data.user)); // 🔥 FALTAVA ISSO
 
       if (data.role === "admin") {
-        window.location.href = "admin.html";
+        window.location.href = "../admin.html";
       } else {
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
       }
     })
 

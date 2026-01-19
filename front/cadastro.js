@@ -19,29 +19,32 @@ function cadastrar() {
     alert("As senhas não coincidem");
     return;
   }
-/*
-  // pegar usuários cadastrados
-  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-  // verificar se email já existe
-  const existe = usuarios.find(u => u.email === email);
-  if (existe) {
-    alert("Esse email já está cadastrado");
-    return;
-  }
-
-  const novoUsuario = {
-    id: Date.now(),
-    nome,
-    telefone,
-    email,
-    senha,
-    role: "cliente"
-  };
-
-  usuarios.push(novoUsuario);
-  localStorage.setItem("usuarios", JSON.stringify(usuarios));
-*/
-  alert("Cadastro realizado com sucesso!");
-
+  fetch("http://localhost:3000/cadastro", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      nome,
+      telefone,
+      email,
+      senha,
+    }),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        return res.json().then((err) => {
+          throw new Error(err.error);
+        });
+      }
+      return res.json();
+    })
+    .then(() => {
+      alert("Cadastro realizado com sucesso!");
+      window.location.href = "login.html";
+    })
+    .catch((err) => {
+      alert(err.message || "Erro ao cadastrar");
+    });
 }

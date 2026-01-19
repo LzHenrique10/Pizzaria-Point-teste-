@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
+const bcrypt = require("bcrypt");
+
 
 const app = express();
 app.use(cors());
@@ -22,7 +24,7 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
     cb(null, Date.now() + ext);
-  }
+  },
 });
 
 const upload = multer({ storage });
@@ -30,19 +32,22 @@ const upload = multer({ storage });
 // Deixar a pasta uploads pública
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-
 // ================= LOGIN ADMIN =================
 
 const usuariosPath = path.join(__dirname, "usuarios.json");
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
   const { email, senha } = req.body;
 
   const usuarios = JSON.parse(fs.readFileSync(usuariosPath));
 
-  const user = usuarios.find((u) => u.email === email && u.senha === senha);
-
+  const user = usuarios.find((u) => u.email === email);
   if (!user) {
+    return res.status(401).json({ error: "Credenciais inválidas" });
+  }
+
+  const senhaValida = await bcrypt.compare(senha, user.senha);
+  if (!senhaValida) {
     return res.status(401).json({ error: "Credenciais inválidas" });
   }
 
@@ -81,13 +86,13 @@ function auth(req, res, next) {
     next();
   });
 }
-
+/*
 // ================= PRODUTOS =================
 app.get("/produtos", (req, res) => {
   const produtos = JSON.parse(fs.readFileSync(produtosPath));
   res.json(produtos);
 });
-
+*/
 // ================= PEDIDOS =================
 
 // 📦 CLIENTE ENVIA PEDIDO
@@ -127,6 +132,37 @@ app.get("/admin/pedidos", auth, (req, res) => {
   const pedidos = JSON.parse(fs.readFileSync(pedidosPath));
   res.json(pedidos);
 });
+// ================= CADASTRO DE USUÁRIO =================
+app.post("/cadastro", async (req, res) => {
+  const { nome, telefone, email, senha } = req.body;
+
+  const usuarios = JSON.parse(fs.readFileSync(usuariosPath));
+
+  const existe = usuarios.find(u => u.email === email);
+  if (existe) {
+    return res.status(400).json({ error: "Email já cadastrado" });
+  }
+
+  const senhaHash = await bcrypt.hash(senha, 10);
+
+  const novoUsuario = {
+    id: Date.now(),
+    nome,
+    telefone,
+    email,
+    senha: senhaHash,
+    role: "cliente"
+  };
+
+  usuarios.push(novoUsuario);
+
+  // 👉 É AQUI 👇
+  fs.writeFileSync(usuariosPath, JSON.stringify(usuarios, null, 2));
+
+  res.json({ message: "Usuário cadastrado com sucesso" });
+});
+
+
 /*
 // ❌ EXCLUIR PEDIDO (ADMIN)
 app.delete("/admin/pedidos/:id", auth, (req, res) => {
@@ -179,7 +215,6 @@ app.delete("/admin/produtos/:id", auth, (req, res) => {
 });
 
 */
-
 
 // ================= SERVER =================
 app.listen(3000, () => {
