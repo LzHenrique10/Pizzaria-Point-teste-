@@ -28,7 +28,6 @@ if (userLogado) {
   });
 }
 
-
 // ================== CLIENTE ==================
 function clienteLogado() {
   return (
@@ -242,7 +241,7 @@ if (checkoutBtn) {
 // ================== HORÁRIO ==================
 function checkoutRestaurantOpen() {
   const h = new Date().getHours();
-  return h >= 11 && h < 22;
+  return h >= 10 && h < 22;
 }
 
 /*
@@ -314,9 +313,7 @@ if (closeMenu) {
   });
 }
 
-
 // Manter login após atualizar a página
-
 
 checkoutBtn.addEventListener("click", function () {
   const address = document.getElementById("address").value;
@@ -332,7 +329,6 @@ checkoutBtn.addEventListener("click", function () {
     cart,
   });
 });
-
 
 // ================== CONFIRMAR CLIENTE ==================
 const confirmarClienteBtn = document.getElementById("confirmar-cliente");
@@ -394,4 +390,38 @@ if (localStorage.getItem("role") === "admin") {
 } else {
   painelMenu?.classList.add("hidden");
 }
+/*
+document.addEventListener("DOMContentLoaded", () => {
+  const authButtons = document.getElementById("auth-buttons");
+  const perfilContainer = document.getElementById("perfil-container");
+  const perfilBtn = document.getElementById("perfil-btn");
 
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (token && user) {
+    authButtons.style.display = "none";
+    perfilContainer.style.display = "flex";
+  } else {
+    authButtons.style.display = "flex";
+    perfilContainer.style.display = "none";
+  }
+
+  if (perfilBtn) {
+    perfilBtn.addEventListener("click", () => {
+      document.getElementById("perfil-nome").innerText = user.nome;
+      document.getElementById("perfil-email").innerText = user.email;
+      document.getElementById("perfil-telefone").innerText = user.telefone;
+      document.getElementById("perfil-role").innerText =
+        role === "admin" ? "Dona / Admin" : "Cliente";
+
+      document.getElementById("perfil-modal").style.display = "flex";
+    });
+  }
+});
+
+function fecharPerfil() {
+  document.getElementById("perfil-modal").style.display = "none";
+}
+*/

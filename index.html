@@ -54,6 +54,7 @@
       class="relative w-full h-[420px] bg-zinc-900 bg-home bg-cover bg-center"
     >
       <div
+        id="auth-buttons"
         style="
           position: absolute;
           top: 16px;
@@ -110,6 +111,8 @@
           Criar conta
         </a>
       </div>
+
+
       <button
         id="menuBtn"
         style="position: absolute; top: 16px; left: 32px; z-index: 89"
@@ -457,6 +460,36 @@
     </div>
 
     <!-- FIM MODAL MENU -->
+
+    <div
+      id="perfil-modal"
+      class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+    >
+      <div class="bg-white rounded-xl w-full max-w-sm p-6 relative">
+        <button
+          onclick="fecharPerfil()"
+          class="absolute top-3 right-3 text-gray-500 hover:text-black"
+        >
+          ✖
+        </button>
+
+        <h2 class="text-xl font-bold mb-4 text-center">Meu Perfil</h2>
+
+        <div class="space-y-2 text-sm">
+          <p><strong>Nome:</strong> <span id="perfil-nome"></span></p>
+          <p><strong>Email:</strong> <span id="perfil-email"></span></p>
+          <p><strong>Telefone:</strong> <span id="perfil-telefone"></span></p>
+          <p><strong>Tipo:</strong> <span id="perfil-role"></span></p>
+        </div>
+
+        <button
+          onclick="logout()"
+          class="mt-6 w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition"
+        >
+          Sair da conta
+        </button>
+      </div>
+    </div>
 
     <script
       type="text/javascript"

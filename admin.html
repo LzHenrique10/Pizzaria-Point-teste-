@@ -1,35 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link
+      rel="shortcut icon"
+      href="../assents/logo_point_praça.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
     <title>Painel da Dona</title>
     <style>
       body {
-        font-family: Arial;
-        background: #111;
-        color: white;
-        padding: 20px;
+        font-family: "Inter", Arial, sans-serif;
+        background: #111827;
+        color: #f9fafb;
+        padding: 24px;
       }
-      input,
-      select,
+
+      h1 {
+        font-size: 28px;
+        margin-bottom: 16px;
+      }
+
       button {
-        padding: 8px;
-        margin: 4px 0;
-        width: 100%;
+        cursor: pointer;
+        transition: 0.2s;
       }
-      .card {
-        background: #1f1f1f;
-        padding: 15px;
-        margin-bottom: 20px;
+
+      .btn-voltar {
+        background: transparent;
+        border: 1px solid #374151;
+        color: #fff;
+        padding: 8px 14px;
         border-radius: 8px;
+        margin-bottom: 20px;
+      }
+
+      .btn-voltar:hover {
+        background: #1f2937;
+      }
+
+      .card {
+        background: #1f2933;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      }
+
+      .pedido-card {
+        background: #ffffff;
+        color: #111;
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .pedido-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      .pedido-itens {
+        margin: 10px 0;
+        padding-left: 16px;
+      }
+
+      .pedido-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .btn-print {
+        background: #16a34a;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 8px;
+      }
+
+      .btn-print:hover {
+        background: #15803d;
+      }
+
+      .btn-delete {
+        background: #dc2626;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 8px;
+      }
+
+      .btn-delete:hover {
+        background: #991b1b;
+      }
+
+      /* ================= MOBILE ================= */
+      @media (max-width: 768px) {
+        body {
+          padding: 14px;
+        }
+
+        h1 {
+          font-size: 22px;
+          text-align: center;
+        }
+
+        .pedido-card {
+          padding: 14px;
+        }
+
+        .pedido-header {
+          flex-direction: column;
+          gap: 4px;
+          font-size: 14px;
+        }
+
+        .pedido-actions {
+          flex-direction: column;
+        }
+
+        .pedido-actions button {
+          width: 100%;
+          padding: 12px;
+          font-size: 15px;
+        }
+
+        .pedido-itens {
+          padding-left: 12px;
+        }
       }
     </style>
   </head>
   <body>
-    <button onclick="window.location.href='index.html'">
-      ⬅ Voltar ao cardápio
-    </button>
-
+    <div
+      style="
+        position: absolute;
+        top: 16px;
+        right: 40px;
+        display: flex;
+        gap: 24px;
+        z-index: 15;
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+      "
+    >
+      <a
+        href="
+            ../index.html"
+        style="
+          color: white;
+          text-decoration: none;
+          border: 1px solid white;
+          padding: 6px 14px;
+          border-radius: 999px;
+          transition: 0.2s;
+        "
+        onmouseover="
+          this.style.background = 'white';
+          this.style.color = 'black';
+        "
+        onmouseout="
+          this.style.background = 'transparent';
+          this.style.color = 'white';
+        "
+      >
+        <i class="fa-solid fa-arrow-left"></i> Voltar para o inicio
+      </a>
+    </div>
     <h1>🍔 Painel da Dona</h1>
 
     <div class="card">

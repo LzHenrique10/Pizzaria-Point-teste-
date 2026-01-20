@@ -163,19 +163,20 @@ app.post("/cadastro", async (req, res) => {
 });
 
 
-/*
+
 // ❌ EXCLUIR PEDIDO (ADMIN)
 app.delete("/admin/pedidos/:id", auth, (req, res) => {
   const id = Number(req.params.id);
 
   const pedidos = JSON.parse(fs.readFileSync(pedidosPath));
-  const novosPedidos = pedidos.filter(p => p.id !== id);
+  const novosPedidos = pedidos.filter(p => String(p.id) !== String(id));
 
   fs.writeFileSync(pedidosPath, JSON.stringify(novosPedidos, null, 2));
 
   res.json({ message: "Pedido excluído com sucesso" });
 });
-*/
+
+
 /*
 // 🛡️ ADMIN — CADASTRAR PRODUTO
 app.post("/admin/produtos", auth, upload.single("imagem"), (req, res) => {

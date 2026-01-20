@@ -1,11 +1,33 @@
+function toast(text, type = "success") {
+  const colors = {
+    success: "#22c55e",
+    error: "#ef4444",
+    warning: "#f59e0b",
+    info: "#3b82f6",
+  };
+
+  Toastify({
+    text,
+    duration: 3000,
+    gravity: "top",
+    position: "right",
+    close: true,
+    style: {
+      background: colors[type],
+      borderRadius: "8px",
+      fontWeight: "600",
+    },
+  }).showToast();
+}
+
 const token = localStorage.getItem("token");
 const role = localStorage.getItem("role");
 
 if (!token || role !== "admin") {
-  alert("Acesso negado");
+  toast("Acesso negado", "error");
+
   window.location.href = "login.html";
 }
-
 
 const pedidosDiv = document.getElementById("pedidos");
 
@@ -16,35 +38,57 @@ function carregarPedidos() {
     },
   })
     .then((res) => {
-      if (!res.ok) throw new Error("Não autorizado");   
+      if (!res.ok) throw new Error("Não autorizado");
       return res.json();
     })
     .then((pedidos) => {
-      pedidosDiv.innerHTML = "";
+      if (!pedidos.length) {
+        pedidosDiv.innerHTML = "<p>Nenhum pedido no momento 🍕</p>";
+        return;
+      }
 
       pedidos.forEach((pedido) => {
         const div = document.createElement("div");
         div.setAttribute("data-id", pedido.id); // ✅ ESSENCIAL
-        div.style.border = "1px solid #ccc";
+        div.style.border = "1px solid #e5e7eb";
+        div.style.borderRadius = "10px";
+        div.style.background = "#fff";
+        div.style.boxShadow = "0 10px 20px rgba(0,0,0,0.08)";
+        div.style.transition = "0.2s";
+
         div.style.padding = "12px";
         div.style.marginBottom = "16px";
 
-        div.innerHTML = `
-          <strong>Cliente:</strong> ${pedido.nome}<br>
-          <strong>Telefone:</strong> ${pedido.telefone}<br>
-          <strong>Endereço:</strong> ${pedido.endereco}<br>
-          <strong>Pagamento:</strong> ${pedido.pagamento}<br>
-          <hr>
-          <strong>Pedido:</strong>
-          <ul>
-            ${pedido.itens
-              .map((i) => `<li>${i.nome} - ${i.quantidade}x</li>`)
-              .join("")}
-          </ul>
+        div.classList.add("pedido-card");
 
-          <button onclick="imprimirPedido('${pedido.id}')">🖨️ Imprimir</button>
-          <button onclick="excluirPedido('${pedido.id}')">❌ Excluir</button>
-        `;
+        div.innerHTML = `
+  <div class="pedido-header">
+    <span>🍕 ${pedido.nome}</span>
+    <span>${pedido.data || ""}</span>
+  </div>
+
+  <p><strong>📞 Telefone:</strong> ${pedido.telefone}</p>
+  <p><strong>📍 Endereço:</strong> ${pedido.endereco}</p>
+  <p><strong>💳 Pagamento:</strong> ${pedido.pagamento}</p>
+
+  <hr style="margin:10px 0">
+
+  <strong>🧾 Itens:</strong>
+  <ul class="pedido-itens">
+    ${pedido.itens.map((i) => `<li>${i.quantidade}x ${i.nome}</li>`).join("")}
+  </ul>
+
+  <strong>Total:</strong> R$ ${pedido.total.toFixed(2)}
+
+  <div class="pedido-actions">
+    <button class="btn-print" onclick="imprimirPedido('${pedido.id}')">
+      🖨️ Imprimir
+    </button>
+    <button class="btn-delete" onclick="excluirPedido(${pedido.id})">
+      ❌ Excluir
+    </button>
+  </div>
+`;
 
         pedidosDiv.appendChild(div);
       });
@@ -57,7 +101,7 @@ function carregarPedidos() {
 }
 
 function excluirPedido(id) {
-  if (!confirm("Excluir pedido?")) return;
+  if (!confirm("Tem certeza que deseja excluir esse pedido?")) return;
 
   fetch(`http://localhost:3000/admin/pedidos/${id}`, {
     method: "DELETE",
@@ -69,7 +113,12 @@ function excluirPedido(id) {
       if (!res.ok) throw new Error("Erro ao excluir");
       carregarPedidos();
     })
-    .catch(() => alert("Erro ao excluir pedido"));
+    .catch(() => toast("Erro ao excluir pedido", "error"))
+
+    .then(() => {
+      toast("Pedido excluído com sucesso 🍕", "success");
+      carregarPedidos();
+    });
 }
 
 function imprimirPedido(id) {
@@ -100,7 +149,7 @@ function imprimirPedido(id) {
   janela.document.close();
   janela.print();
 }
-
+/*
 function cadastrarProduto() {
   fetch("http://localhost:3000/admin/produtos", {
     method: "POST",
@@ -121,16 +170,16 @@ function cadastrarProduto() {
       alert("Produto cadastrado!");
     });
 }
-
+*/
 const listaProdutos = document.getElementById("lista-produtos");
 
 function carregarProdutos() {
   fetch("http://localhost:3000/produtos")
-    .then(res => res.json())
-    .then(produtos => {
+    .then((res) => res.json())
+    .then((produtos) => {
       listaProdutos.innerHTML = "";
 
-      produtos.forEach(produto => {
+      produtos.forEach((produto) => {
         const div = document.createElement("div");
         div.innerHTML = `
           <strong>${produto.nome}</strong> - R$ ${produto.preco.toFixed(2)}
@@ -141,6 +190,7 @@ function carregarProdutos() {
     });
 }
 
+/*
 function excluirProduto(id) {
   if (!confirm("Excluir produto?")) return;
 
@@ -151,7 +201,7 @@ function excluirProduto(id) {
     },
   }).then(() => carregarProdutos());
 }
-
+*/
 
 carregarPedidos();
 carregarProdutos();
