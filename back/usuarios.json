@@ -6,37 +6,5 @@
     "email": "admin@gmail.com",
     "senha": "$2b$10$/XCgrz2Vh8q/1hLhfH90gu4Ynix7qTsJvpE/SSl9LxafutuFXhBra",
     "role": "admin"
-  },
-  {
-    "id": 2,
-    "nome": "Cliente Teste",
-    "email": "cliente@gmail.com",
-    "senha": "123456",
-    "telefone": "85999999999",
-    "role": "cliente"
-  },
-  {
-    "id": 1768832758441,
-    "nome": "Eduardo",
-    "telefone": "85996412344",
-    "email": "edu@gmail.com",
-    "senha": "$2b$10$j60e.fhdYqbbLdPMCEfSrej55XbrCSQrCG.E0zFrqRWBZ0xt/bMUe",
-    "role": "cliente"
-  },
-  {
-    "id": 1768915570472,
-    "nome": "Mara",
-    "telefone": "123456789",
-    "email": "mara@gmail.com",
-    "senha": "$2b$10$/tR7bxnr6GPFLNvpiiRdwO5M4hRqsFMFsHpXkInaXc/jI4tuJAd3K",
-    "role": "cliente"
-  },
-  {
-    "id": 1769099930255,
-    "nome": "Luiz",
-    "telefone": "85996412345",
-    "email": "luiz@gmail.com",
-    "senha": "$2b$10$HEQ2W7.0L5Ch8vcY1Ub/heALNMEx5vQ8n0RhnJdlKVwNNcgjaAR8G",
-    "role": "cliente"
   }
 ]

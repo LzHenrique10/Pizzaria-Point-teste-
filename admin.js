@@ -32,7 +32,7 @@ if (!token || role !== "admin") {
 const pedidosDiv = document.getElementById("pedidos");
 
 function carregarPedidos() {
-  fetch("http://localhost:3000/admin/pedidos", {
+  fetch("/admin/pedidos", {
     headers: {
       Authorization: "Bearer " + localStorage.getItem("token"),
     },
@@ -109,7 +109,7 @@ function carregarPedidos() {
 function excluirPedido(id) {
   if (!confirm("Tem certeza que deseja excluir esse pedido?")) return;
 
-  fetch(`http://localhost:3000/admin/pedidos/${id}`, {
+  fetch(`/admin/pedidos/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: "Bearer " + localStorage.getItem("token"),
@@ -267,7 +267,7 @@ function imprimirPedido(id) {
 
 /*
 function cadastrarProduto() {
-  fetch("http://localhost:3000/admin/produtos", {
+  fetch("/admin/produtos", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -290,7 +290,7 @@ function cadastrarProduto() {
 const listaProdutos = document.getElementById("lista-produtos");
 
 function carregarProdutos() {
-  fetch("http://localhost:3000/produtos")
+  fetch("/produtos")
     .then((res) => res.json())
     .then((produtos) => {
       listaProdutos.innerHTML = "";
@@ -310,7 +310,7 @@ function carregarProdutos() {
 function excluirProduto(id) {
   if (!confirm("Excluir produto?")) return;
 
-  fetch(`http://localhost:3000/admin/produtos/${id}`, {
+  fetch(`/admin/produtos/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: "Bearer " + localStorage.getItem("token"),

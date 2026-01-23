@@ -20,7 +20,7 @@ function cadastrar() {
     return;
   }
 
-  fetch("http://localhost:3000/cadastro", {
+  fetch("/cadastro", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

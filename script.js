@@ -239,7 +239,7 @@ if (checkoutBtn) {
       return;
     }
 
-    fetch("http://localhost:3000/pedidos", {
+    fetch("/pedidos", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(pedido),
@@ -274,7 +274,7 @@ function checkoutRestaurantOpen() {
 const hamburgers = document.getElementById("menu-hamburgers");
 const bebidas = document.getElementById("menu-bebidas");
 
-fetch("http://localhost:3000/produtos")
+fetch("/produtos")
   .then((res) => res.json())
   .then((produtos) => {
     produtos.forEach((produto) => {
@@ -384,7 +384,7 @@ if (confirmarClienteBtn) {
       total: cart.reduce((sum, i) => sum + i.price * i.quantity, 0),
     };
 
-    await fetch("http://localhost:3000/pedidos", {
+    await fetch("/pedidos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
