@@ -1,8 +1,13 @@
+// Base da URL: pega localhost no dev ou o domínio no servidor
+const BASE_URL = window.location.hostname === "localhost"
+  ? "http://localhost:3000"
+  : "https://pizzariapointdapraca.com.br";
+
 function login() {
   const emailInput = document.getElementById("email");
   const senhaInput = document.getElementById("senha");
 
-  fetch("/login", {
+  fetch(`${BASE_URL}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

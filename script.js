@@ -1,3 +1,8 @@
+// Base da URL: pega localhost no dev ou o domínio no servidor
+const BASE_URL = window.location.hostname === "localhost"
+  ? "http://localhost:3000"
+  : "https://pizzariapointdapraca.com.br";
+
 // ================== CARRINHO ==================
 const menu = document.getElementById("menu");
 const cartBtn = document.getElementById("cart-btn");
@@ -239,7 +244,7 @@ if (checkoutBtn) {
       return;
     }
 
-    fetch("/pedidos", {
+    fetch(`${BASE_URL}/pedidos`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(pedido),
@@ -274,7 +279,7 @@ function checkoutRestaurantOpen() {
 const hamburgers = document.getElementById("menu-hamburgers");
 const bebidas = document.getElementById("menu-bebidas");
 
-fetch("/produtos")
+fetch("http://localhost:3000/produtos")
   .then((res) => res.json())
   .then((produtos) => {
     produtos.forEach((produto) => {
@@ -384,7 +389,7 @@ if (confirmarClienteBtn) {
       total: cart.reduce((sum, i) => sum + i.price * i.quantity, 0),
     };
 
-    await fetch("/pedidos", {
+    await fetch(`${BASE_URL}/pedidos`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

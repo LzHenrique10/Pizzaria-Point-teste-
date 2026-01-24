@@ -1,3 +1,6 @@
+const BASE_URL = window.location.hostname === "localhost"
+  ? "http://localhost:3000"
+  : "https://pizzariapointdapraca.com.br";
 function toast(text, type = "success") {
   const colors = {
     success: "#22c55e",
@@ -32,7 +35,7 @@ if (!token || role !== "admin") {
 const pedidosDiv = document.getElementById("pedidos");
 
 function carregarPedidos() {
-  fetch("/admin/pedidos", {
+  fetch(`${BASE_URL}/admin/pedidos`, {
     headers: {
       Authorization: "Bearer " + localStorage.getItem("token"),
     },
@@ -42,6 +45,9 @@ function carregarPedidos() {
       return res.json();
     })
     .then((pedidos) => {
+      // limpa os pedidos antes de adicionar
+      pedidosDiv.innerHTML = "";
+
       if (!pedidos.length) {
         pedidosDiv.innerHTML = "<p>Nenhum pedido no momento 🍕</p>";
         return;
@@ -106,26 +112,30 @@ function carregarPedidos() {
     });
 }
 
-function excluirPedido(id) {
+async function excluirPedido(id) {
   if (!confirm("Tem certeza que deseja excluir esse pedido?")) return;
 
-  fetch(`/admin/pedidos/${id}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: "Bearer " + localStorage.getItem("token"),
-    },
-  })
-    .then((res) => {
-      if (!res.ok) throw new Error("Erro ao excluir");
-      carregarPedidos();
-    })
-    .catch(() => toast("Erro ao excluir pedido", "error"))
-
-    .then(() => {
-      toast("Pedido excluído com sucesso 🍕", "success");
-      carregarPedidos();
+  try {
+    const res = await fetch(`${BASE_URL}/admin/pedidos/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
     });
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(errorData.error || "Erro ao excluir pedido");
+    }
+
+    toast("Pedido excluído com sucesso 🍕", "success");
+    carregarPedidos();
+  } catch (err) {
+    console.error(err);
+    toast(err.message || "Erro ao excluir pedido", "error");
+  }
 }
+
 
 function imprimirPedido(id) {
   const pedidoDiv = document.querySelector(`[data-numero="${id}"]`);
@@ -267,7 +277,7 @@ function imprimirPedido(id) {
 
 /*
 function cadastrarProduto() {
-  fetch("/admin/produtos", {
+  fetch("http://localhost:3000/admin/produtos", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -287,10 +297,11 @@ function cadastrarProduto() {
     });
 }
 */
+/*
 const listaProdutos = document.getElementById("lista-produtos");
 
 function carregarProdutos() {
-  fetch("/produtos")
+  fetch("http://localhost:3000/produtos")
     .then((res) => res.json())
     .then((produtos) => {
       listaProdutos.innerHTML = "";
@@ -310,7 +321,7 @@ function carregarProdutos() {
 function excluirProduto(id) {
   if (!confirm("Excluir produto?")) return;
 
-  fetch(`/admin/produtos/${id}`, {
+  fetch(`http://localhost:3000/admin/produtos/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: "Bearer " + localStorage.getItem("token"),
